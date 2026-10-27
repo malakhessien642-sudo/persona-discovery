@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#080C0B">
+    <meta name="description" content="PERSONA — رحلة تفاعلية لاكتشاف عالمك الداخلي وفهم شخصيتك.">
+
+    <title>PERSONA | اكتشف عالمك الداخلي</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <div class="app-shell" id="app">
+
+        <header class="topbar">
+            <a href="#" class="brand" aria-label="PERSONA Home">
+                <span class="brand-mark">P.</span>
+                <span class="brand-name">PERSONA</span>
+            </a>
+
+            <div class="header-actions">
+                <button class="language-toggle" id="languageToggle" type="button">
+                    EN
+                </button>
+
+                <button class="sound-toggle" id="soundToggle" type="button"
+                    aria-label="Toggle sound">
+                    <span class="sound-icon">♫</span>
+                </button>
+            </div>
+        </header>
+
+        <main id="mainContent">            <section class="hero-screen" id="welcomeScreen">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        <span data-i18n="eyebrow">YOUR INNER WORLD AWAITS</span>
+                        <span class="eyebrow-line"></span>
+                    </div>
+
+                    <div class="hero-emblem">
+                        <div class="emblem-ring ring-outer"></div>
+                        <div class="emblem-ring ring-inner"></div>
+                        <div class="emblem-center">
+                            <span class="emblem-letter">P</span>
+                            <span class="emblem-star">✦</span>
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title">
+                        <span data-i18n="titleLineOne">Discover</span>
+                        <span class="title-accent" data-i18n="titleLineTwo">
+                            Your Inner Self
+                        </span>
+                    </h1>
+
+                    <p class="hero-description" data-i18n="heroDescription">
+                        A journey beyond the surface.
+                        Explore your thoughts, values, emotions,
+                        and the hidden patterns that make you unique.
+                    </p>
+
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <span class="meta-value">60</span>
+                            <span class="meta-label" data-i18n="questionsLabel">
+                                QUESTIONS
+                            </span>
+                        </div>
+
+                        <span class="meta-divider"></span>
+
+                        <div class="meta-item">
+                            <span class="meta-value">06</span>
+                            <span class="meta-label" data-i18n="dimensionsLabel">
+                                DIMENSIONS
+                            </span>
+                        </div>
+
+                        <span class="meta-divider"></span>
+
+                        <div class="meta-item">
+                            <span class="meta-value">∞</span>
+                            <span class="meta-label" data-i18n="discoverLabel">
+                                DISCOVERIES
+                            </span>
+                        </div>
+                    </div>
+
+                    <button class="primary-button" id="startButton" type="button">
+                        <span data-i18n="startButton">Begin Your Journey</span>
+                        <span class="button-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                    <p class="privacy-note" data-i18n="privacyNote">
+                        ✦ A personal journey of self-reflection
+                    </p>
+
+                </div>
+
+                <div class="hero-bottom">
+                    <span>SELF · AWARENESS · DISCOVERY</span>
+                    <span class="bottom-decoration">✳</span>
+                    <span>EST. YOURSELF</span>
+                </div>
+
+            </section>            <section class="quiz-screen hidden" id="quizScreen">
+
+                <div class="quiz-heading">
+                    <div class="quiz-heading-top">
+                        <span class="section-tag" data-i18n="journeyTag">
+                            THE JOURNEY
+                        </span>
+
+                        <span class="question-counter" id="questionCounter">
+                            01 / 60
+                        </span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+
+                    <div class="dimension-info">
+                        <span class="dimension-dot" id="dimensionDot"></span>
+                        <span id="dimensionName">Self-awareness</span>
+                    </div>
+                </div>
+
+                <div class="question-card" id="questionCard">
+
+                    <span class="question-number" id="questionNumber">
+                        QUESTION 01
+                    </span>
+
+                    <h2 class="question-title" id="questionTitle">
+                        Getting to know yourself...
+                    </h2>
+
+                    <p class="question-subtitle" id="questionSubtitle">
+                        Take a moment. Choose what feels most like you.
+                    </p>
+
+                    <div class="answer-list" id="answerList">
+                        <!-- JavaScript will add the answer options here -->
+                    </div>
+
+                </div>
+
+                <div class="quiz-navigation">
+
+                    <button
+                        class="secondary-button"
+                        id="previousButton"
+                        type="button"
+                        disabled
+                    >
+                        <span aria-hidden="true">←</span>
+                        <span data-i18n="previousButton">Previous</span>
+                    </button>
+
+                    <button
+                        class="primary-button next-button"
+                        id="nextButton"
+                        type="button"
+                        disabled
+                    >
+                        <span data-i18n="nextButton">Continue</span>
+                        <span class="button-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                </div>
+
+                <p class="quiz-footnote" data-i18n="quizFootnote">
+                    There are no right or wrong answers. Be honest with yourself.
+                </p>
+
+            </section>            <section class="results-screen hidden" id="resultsScreen">
+
+                <div class="results-heading">
+                    <span class="section-tag" data-i18n="resultsTag">
+                        YOUR INNER PORTRAIT
+                    </span>
+
+                    <h2 class="results-title" data-i18n="resultsTitle">
+                        A Little Closer to You
+                    </h2>
+
+                    <p class="results-description" data-i18n="resultsDescription">
+                        Your answers reveal patterns to reflect on,
+                        not limits on who you can become.
+                    </p>
+                </div>
+
+                <div class="personality-card">
+
+                    <div class="result-orbit">
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+
+                        <div class="result-symbol" id="resultSymbol">
+                            ✦
+                        </div>
+                    </div>
+
+                    <span class="result-overline" data-i18n="yourProfile">
+                        YOUR REFLECTION PROFILE
+                    </span>
+
+                    <h3 class="personality-name" id="personalityName">
+                        The Thoughtful Explorer
+                    </h3>
+
+                    <p class="personality-description" id="personalityDescription">
+                        Your personal reflection will appear here.
+                    </p>
+
+                    <div class="result-tags" id="resultTags"></div>
+
+                </div>
+
+                <div class="dimensions-section">
+
+                    <div class="section-heading">
+                        <span class="section-tag" data-i18n="dimensionsTag">
+                            SIX DIMENSIONS
+                        </span>
+
+                        <h3 data-i18n="dimensionsTitle">
+                            Your Inner Landscape
+                        </h3>
+
+                        <p data-i18n="dimensionsDescription">
+                            Explore the different patterns in your answers.
+                        </p>
+                    </div>
+
+                    <div class="dimension-results" id="dimensionResults">
+                        <!-- JavaScript will generate the dimension scores -->
+                    </div>
+
+                </div>
+
+                <div class="reflection-card">
+
+                    <span class="reflection-icon">✧</span>
+
+                    <h3 data-i18n="reflectionTitle">
+                        A Thought to Carry With You
+                    </h3>
+
+                    <p id="reflectionText">
+                        Every answer is an invitation to understand yourself.
+                    </p>
+
+                </div>
+
+                <div class="results-actions">
+
+                    <button class="primary-button" id="restartButton" type="button">
+                        <span data-i18n="restartButton">Begin Again</span>
+                        <span class="button-arrow" aria-hidden="true">↻</span>
+                    </button>
+
+                    <button class="secondary-button" id="shareButton" type="button">
+                        <span data-i18n="shareButton">Share My Results</span>
+                        <span aria-hidden="true">↗</span>
+                    </button>
+
+                </div>
+
+                <p class="results-disclaimer" data-i18n="resultsDisclaimer">
+                    PERSONA is a self-reflection experience, not a clinical
+                    or psychological diagnosis.
+                </p>
+
+            </section>            <footer class="site-footer">
+                <a href="#" class="footer-brand">PERSONA<span>.</span></a>
+
+                <p data-i18n="footerText">
+                    An invitation to understand yourself.
+                </p>
+
+                <span class="footer-mark">✦</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <div class="toast-message" id="toastMessage" role="status"
+        aria-live="polite"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
