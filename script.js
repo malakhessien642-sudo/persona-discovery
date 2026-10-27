@@ -1522,3 +1522,22 @@ window.addEventListener("load", () => {
 
     console.log("PERSONA interface references are available.");
 });
+/* PERSONA — Button connection check */
+console.log("PERSONA script loaded");
+
+window.addEventListener("DOMContentLoaded", () => {
+    console.log("PERSONA page ready");
+
+    const start = document.querySelector("#startButton");
+    const language = document.querySelector("#languageToggle");
+    const sound = document.querySelector("#soundToggle");
+
+    console.log({
+        startButtonFound: !!start,
+        languageButtonFound: !!language,
+        soundButtonFound: !!sound,
+        startQuizFunction: typeof startQuiz,
+        applyTranslationsFunction: typeof applyTranslations
+    });
+});
+
