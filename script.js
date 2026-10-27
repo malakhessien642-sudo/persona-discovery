@@ -1541,3 +1541,234 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+/* =========================================
+   PERSONA — COMPLETE REPAIR PATCH
+========================================= */
+
+// Fix dimension names used by the quiz and results.
+dimensions.forEach(dimension => {
+    dimension.name = dimension.en;
+    dimension.nameAr = dimension.ar;
+});
+
+// Fix the nested English result profiles.
+if (resultProfiles.emotions) {
+    const english = resultProfiles.emotions;
+
+    resultProfiles.en = {
+        emotions: english.en,
+        relationships: english.relationships,
+        thinking: english.thinking,
+        values: english.values,
+        ambition: english.ambition,
+        innerWorld: english.innerWorld
+    };
+}
+
+// Fix toast messages.
+function showToast(message) {
+    const toast = document.getElementById("toastMessage");
+
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+}
+
+// Fix the progress counter and navigation buttons.
+function updateProgress() {
+    const current = state.currentQuestion + 1;
+    const total = questions.length;
+
+    if (elements.questionCounter) {
+        elements.questionCounter.textContent =
+            `${String(current).padStart(2, "0")} / ${total}`;
+    }
+
+    if (elements.questionNumber) {
+        elements.questionNumber.textContent =
+            `${t("questionLabel")} ${String(current).padStart(2, "0")}`;
+    }
+
+    if (elements.progressFill) {
+        elements.progressFill.style.width =
+            `${(current / total) * 100}%`;
+    }
+
+    if (elements.previousButton) {
+        elements.previousButton.disabled = current === 1;
+    }
+
+    if (elements.nextButton) {
+        elements.nextButton.disabled =
+            state.answers[state.currentQuestion] === undefined;
+
+        const label = current === total
+            ? (state.language === "ar" ? "عرض النتيجة" : "Reveal Results")
+            : t("nextButton");
+
+        elements.nextButton.innerHTML =
+            `<span>${label}</span><span class="button-arrow" aria-hidden="true">↗</span>`;
+    }
+}
+
+// Render each question and its four answer choices.
+function renderQuestion() {
+    const question = questions[state.currentQuestion];
+
+    if (!question) return;
+
+    const dimension = getDimension(question.dimension);
+
+    if (elements.dimensionName && dimension) {
+        elements.dimensionName.textContent =
+            state.language === "ar" ? dimension.ar : dimension.en;
+    }
+
+    if (elements.questionTitle) {
+        elements.questionTitle.textContent =
+            state.language === "ar" ? question.ar : question.en;
+    }
+
+    if (elements.questionSubtitle) {
+        elements.questionSubtitle.textContent =
+            state.language === "ar"
+                ? "اختاري الإجابة الأقرب ليكي."
+                : "Choose the answer that feels closest to you.";
+    }
+
+    if (elements.answerList) {
+        elements.answerList.innerHTML = "";
+
+        question.answers.forEach((answer, index) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "answer-option";
+
+            button.textContent =
+                state.language === "ar" ? answer.ar : answer.en;
+
+            const selected =
+                state.answers[state.currentQuestion] === index;
+
+            if (selected) button.classList.add("selected");
+
+            button.setAttribute("aria-pressed", String(selected));
+
+            button.addEventListener("click", () => {
+                state.answers[state.currentQuestion] = index;
+                renderQuestion();
+            });
+
+            elements.answerList.appendChild(button);
+        });
+    }
+
+    updateProgress();
+}
+
+// Make sure the start button opens the quiz.
+function startQuiz() {
+    state.currentQuestion = 0;
+    state.answers = {};
+    state.completed = false;
+    state.results = null;
+
+    elements.welcomeScreen.classList.add("hidden");
+    elements.resultsScreen.classList.add("hidden");
+    elements.quizScreen.classList.remove("hidden");
+
+    renderQuestion();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Navigate through the questions.
+function nextQuestion() {
+    if (state.answers[state.currentQuestion] === undefined) {
+        showToast(t("chooseAnswer"));
+        return;
+    }
+
+    if (state.currentQuestion < questions.length - 1) {
+        state.currentQuestion++;
+        renderQuestion();
+    } else {
+        calculateResults();
+    }
+}
+
+function previousQuestion() {
+    if (state.currentQuestion > 0) {
+        state.currentQuestion--;
+        renderQuestion();
+    }
+}
+
+// Reset the quiz.
+function restartQuiz() {
+    state.currentQuestion = 0;
+    state.answers = {};
+    state.completed = false;
+    state.results = null;
+
+    elements.resultsScreen.classList.add("hidden");
+    elements.quizScreen.classList.add("hidden");
+    elements.welcomeScreen.classList.remove("hidden");
+
+    if (elements.progressFill) {
+        elements.progressFill.style.width = "0%";
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Keep the next button disabled until an answer is selected.
+document.addEventListener("click", event => {
+    const answer = event.target.closest("#answerList .answer-option");
+
+    if (answer) {
+        setTimeout(updateProgress, 0);
+    }
+});
+
+// Give the sound control a real, small interface sound.
+if (elements.soundToggle) {
+    elements.soundToggle.addEventListener("click", () => {
+        if (!state.soundEnabled) return;
+
+        try {
+            const AudioContextClass =
+                window.AudioContext || window.webkitAudioContext;
+
+            if (!AudioContextClass) return;
+
+            const audio = new AudioContextClass();
+            const oscillator = audio.createOscillator();
+            const gain = audio.createGain();
+
+            oscillator.type = "sine";
+            oscillator.frequency.value = 660;
+            gain.gain.value = 0.035;
+
+            oscillator.connect(gain);
+            gain.connect(audio.destination);
+
+            oscillator.start();
+            oscillator.stop(audio.currentTime + 0.12);
+
+            oscillator.onended = () => audio.close();
+        } catch (error) {
+            console.warn("Interface sound is unavailable.", error);
+        }
+    });
+}
+
+// Refresh the visible interface after the patch is loaded.
+applyTranslations();
+console.log("PERSONA repair patch loaded.");
+
