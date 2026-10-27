@@ -1105,4 +1105,266 @@ animation: none !important;
     animation: none !important;
 }
 
+}/* =========================================
+PERSONA — FINAL PURPLE & GOLD OVERRIDES
+========================================= */
+
+:root {
+--bg: #10071F;
+--bg-soft: #180C2B;
+--surface: #1D1030;
+--surface-light: #28163D;
+
+--emerald: #7B2CBF;
+--emerald-light: #C09AFF;
+--emerald-dark: #542080;
+
+--gold: #D4AF37;
+--gold-light: #F2D98D;
+--ivory: #F8F3FF;
+
+--text-muted: #C7B8D9;
+--text-dim: #9885AE;
+
+--border: rgba(212, 175, 55, 0.20);
+--green-border: rgba(155, 109, 232, 0.25);
+
+--shadow-green: 0 0 50px rgba(123, 44, 191, 0.18);
+--shadow-gold: 0 0 35px rgba(212, 175, 55, 0.12);
+
+}
+
+/* Main background */
+body {
+background:
+radial-gradient(
+ellipse at 15% 10%,
+rgba(123, 44, 191, 0.25),
+transparent 45%
+),
+radial-gradient(
+ellipse at 85% 35%,
+rgba(212, 175, 55, 0.08),
+transparent 38%
+),
+#10071F !important;
+
+color: #F8F3FF;
+
+}
+
+/* Ambient cinematic lighting */
+.ambient-one {
+background: #8B42C8 !important;
+opacity: 0.18 !important;
+}
+
+.ambient-two {
+background: #D4AF37 !important;
+opacity: 0.10 !important;
+}
+
+/* Brand and royal emblem */
+.brand-mark {
+color: #F2D98D !important;
+border-color: rgba(212, 175, 55, 0.65) !important;
+}
+
+.brand:hover .brand-mark {
+color: #F2D98D !important;
+border-color: #D4AF37 !important;
+}
+
+.emblem-ring {
+border-color: rgba(212, 175, 55, 0.35) !important;
+}
+
+.ring-inner {
+border-color: rgba(169, 112, 232, 0.65) !important;
+box-shadow: 0 0 35px rgba(123, 44, 191, 0.24) !important;
+}
+
+.emblem-center {
+background:
+radial-gradient(
+circle at 35% 25%,
+#542080,
+#180C2B 75%
+) !important;
+
+border-color: rgba(212, 175, 55, 0.65) !important;
+
+box-shadow:
+    0 0 35px rgba(123, 44, 191, 0.28),
+    inset 0 0 20px rgba(212, 175, 55, 0.08) !important;
+
+}
+
+.emblem-star {
+color: #F2D98D !important;
+}
+
+/* Main headings */
+.hero-title {
+color: #F8F3FF;
+}
+
+.title-accent {
+color: #F2D98D !important;
+text-shadow: 0 0 35px rgba(212, 175, 55, 0.15);
+}
+
+/* Main buttons */
+.primary-button {
+background:
+linear-gradient(
+115deg,
+#542080,
+#873FC2 55%,
+#633095
+) !important;
+
+color: #FFFFFF !important;
+
+border: 1px solid rgba(242, 217, 141, 0.70) !important;
+
+box-shadow:
+    0 8px 30px rgba(123, 44, 191, 0.25),
+    0 0 18px rgba(212, 175, 55, 0.08) !important;
+
+}
+
+.primary-button:hover {
+border-color: #F2D98D !important;
+
+box-shadow:
+    0 12px 35px rgba(123, 44, 191, 0.35),
+    0 0 24px rgba(212, 175, 55, 0.12) !important;
+
+}
+
+.button-arrow {
+color: #F2D98D !important;
+}
+
+/* Header controls */
+.language-toggle,
+.sound-toggle {
+background: rgba(29, 16, 48, 0.90) !important;
+color: #F2D98D !important;
+border-color: rgba(212, 175, 55, 0.30) !important;
+}
+
+.language-toggle:hover,
+.sound-toggle:hover {
+background: #35204D !important;
+border-color: #D4AF37 !important;
+color: #FFFFFF !important;
+}
+
+/* Quiz progress and question card */
+.progress-track {
+background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.progress-fill {
+background:
+linear-gradient(
+90deg,
+#542080,
+#A970E8,
+#D4AF37
+) !important;
+
+box-shadow: 0 0 16px rgba(123, 44, 191, 0.30) !important;
+
+}
+
+.dimension-dot {
+background: #D4AF37 !important;
+box-shadow: 0 0 12px rgba(212, 175, 55, 0.35) !important;
+}
+
+.question-card,
+.personality-card,
+.reflection-card {
+background:
+linear-gradient(
+145deg,
+rgba(40, 22, 61, 0.94),
+rgba(16, 7, 31, 0.97)
+) !important;
+
+border-color: rgba(212, 175, 55, 0.22) !important;
+
+}
+
+/* Secondary buttons */
+.secondary-button {
+background: rgba(29, 16, 48, 0.90) !important;
+color: #F2D98D !important;
+border: 1px solid rgba(212, 175, 55, 0.38) !important;
+}
+
+.secondary-button:hover {
+background: rgba(123, 44, 191, 0.24) !important;
+border-color: #D4AF37 !important;
+}
+
+/* Result details */
+.result-symbol {
+color: #F2D98D !important;
+border-color: rgba(212, 175, 55, 0.55) !important;
+background:
+radial-gradient(
+circle,
+#542080,
+#180C2B 75%
+) !important;
+}
+
+.orbit {
+border-color: rgba(212, 175, 55, 0.30) !important;
+}
+
+.dimension-result {
+background:
+linear-gradient(
+145deg,
+#28163D,
+#180C2B
+) !important;
+
+border-color: rgba(212, 175, 55, 0.22) !important;
+
+}
+
+.dimension-bar-fill {
+background:
+linear-gradient(
+90deg,
+#6638A5,
+#A970E8,
+#D4AF37
+) !important;
+}
+
+.result-tag {
+color: #F2D98D !important;
+border-color: rgba(212, 175, 55, 0.30) !important;
+background: rgba(212, 175, 55, 0.06) !important;
+}
+
+/* Footer accents */
+.hero-bottom {
+border-color: rgba(212, 175, 55, 0.18) !important;
+}
+
+.bottom-decoration {
+color: #D4AF37 !important;
+}
+
+.eyebrow,
+.meta-value {
+color: #F2D98D !important;
 }
