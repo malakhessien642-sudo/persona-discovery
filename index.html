@@ -305,6 +305,26 @@
     <div class="toast-message" id="toastMessage" role="status"
         aria-live="polite"></div>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=3">
+<script>
+window.addEventListener("error", function (event) {
+    const box = document.createElement("pre");
+
+    box.style.cssText =
+        "position:fixed;bottom:10px;left:10px;right:10px;" +
+        "z-index:99999;background:#300;color:#fff;padding:14px;" +
+        "white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;";
+
+    box.textContent =
+        "PERSONA ERROR:\n" +
+        event.message +
+        "\nLine: " + event.lineno;
+
+    document.body.appendChild(box);
+});
+
+
+</script>
+
 </body>
 </html>
